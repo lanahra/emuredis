@@ -1,5 +1,7 @@
 package com.github.lanahra.emuredis.domain.model.string;
 
+import java.time.Instant;
+
 public class StringValueFixture {
 
     private StringValueFixture() {
@@ -12,5 +14,9 @@ public class StringValueFixture {
 
     public static StringValue aNumericStringValue() {
         return StringValue.from("10");
+    }
+
+    public static StringValue aStringValueWithExpiration(Instant expiration) {
+        return StringValue.from("value", expiration);
     }
 }

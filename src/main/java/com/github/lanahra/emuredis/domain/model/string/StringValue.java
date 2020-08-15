@@ -1,20 +1,33 @@
 package com.github.lanahra.emuredis.domain.model.string;
 
 import com.github.lanahra.emuredis.domain.model.Value;
+import java.time.Instant;
 import java.util.Objects;
 
-public class StringValue implements Value {
-
-    public static final StringValue ZERO = new StringValue("0");
+public class StringValue extends Value {
 
     private String value;
 
     private StringValue(String value) {
+        super();
         this.value = value;
+    }
+
+    private StringValue(String value, Instant expiration) {
+        super(expiration);
+        this.value = value;
+    }
+
+    public static StringValue zero() {
+        return new StringValue("0");
     }
 
     public static StringValue from(String value) {
         return new StringValue(value);
+    }
+
+    public static StringValue from(String value, Instant expiration) {
+        return new StringValue(value, expiration);
     }
 
     public long increment() {
@@ -42,11 +55,11 @@ public class StringValue implements Value {
     }
 
     private boolean equalsCasted(StringValue other) {
-        return value.equals(other.value);
+        return value.equals(other.value) && Objects.equals(expiration, other.expiration);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(value, expiration);
     }
 }

@@ -1,4 +1,4 @@
-package com.github.lanahra.emuredis.application;
+package com.github.lanahra.emuredis.application.string;
 
 public class SetCommandFixture {
 

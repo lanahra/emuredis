@@ -7,17 +7,19 @@ import java.util.Arrays;
 public class KeyApplicationService {
 
     private final KeyValueRepository repository;
+    private final Transaction transaction;
 
-    public KeyApplicationService(KeyValueRepository repository) {
+    public KeyApplicationService(KeyValueRepository repository, Transaction transaction) {
         this.repository = repository;
+        this.transaction = transaction;
     }
 
     public int dbSize() {
-        return repository.size();
+        return transaction.execute(repository::size);
     }
 
     public int delete(String... keys) {
-        return repository.delete(keysFrom(keys));
+        return transaction.execute(() -> repository.delete(keysFrom(keys)));
     }
 
     private Key[] keysFrom(String... keys) {

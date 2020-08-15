@@ -1,28 +1,15 @@
 package com.github.lanahra.emuredis.domain.model;
 
-import java.time.Instant;
-import java.util.Objects;
-
 public class Key {
 
     private final String name;
-    private final Instant expiration;
 
-    private Key(String name, Instant expiration) {
+    public Key(String name) {
         this.name = name;
-        this.expiration = expiration;
     }
 
     public static Key from(String name) {
-        return new Key(name, null);
-    }
-
-    public static Key from(String name, Instant expiration) {
-        return new Key(name, expiration);
-    }
-
-    public boolean isExpired(Clock clock) {
-        return expiration != null && clock.now().isAfter(expiration);
+        return new Key(name);
     }
 
     @Override
@@ -31,11 +18,11 @@ public class Key {
     }
 
     private boolean equalsCasted(Key other) {
-        return name.equals(other.name) && Objects.equals(expiration, other.expiration);
+        return name.equals(other.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, expiration);
+        return name.hashCode();
     }
 }

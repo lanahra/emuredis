@@ -1,7 +1,7 @@
-package com.github.lanahra.emuredis.application;
+package com.github.lanahra.emuredis.application.string;
 
-import static com.github.lanahra.emuredis.application.SetCommandFixture.aSetCommand;
-import static com.github.lanahra.emuredis.application.SetCommandFixture.aSetCommandWithExpiration;
+import static com.github.lanahra.emuredis.application.string.SetCommandFixture.aSetCommand;
+import static com.github.lanahra.emuredis.application.string.SetCommandFixture.aSetCommandWithExpiration;
 import static com.github.lanahra.emuredis.domain.model.KeyFixture.aKey;
 import static com.github.lanahra.emuredis.domain.model.string.StringValueFixture.aNumericStringValue;
 import static com.github.lanahra.emuredis.domain.model.string.StringValueFixture.aStringValue;
@@ -11,8 +11,11 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.github.lanahra.emuredis.application.SimpleTransaction;
+import com.github.lanahra.emuredis.application.Transaction;
 import com.github.lanahra.emuredis.domain.model.Clock;
 import com.github.lanahra.emuredis.domain.model.Key;
+import com.github.lanahra.emuredis.domain.model.KeyNotFoundException;
 import com.github.lanahra.emuredis.domain.model.KeyValueRepository;
 import com.github.lanahra.emuredis.domain.model.string.StringValue;
 import java.time.Duration;
@@ -25,7 +28,7 @@ public class StringApplicationServiceTest {
     public void addsStringValueKeyToTheRepository() {
         SetCommand command = aSetCommand();
 
-        service.set(command);
+        service.setValue(command);
 
         verify(repository).add(Key.from("key"), StringValue.from("value"));
     }
@@ -37,10 +40,10 @@ public class StringApplicationServiceTest {
 
         when(clock.now()).thenReturn(now);
 
-        service.set(command);
+        service.setValue(command);
 
         verify(repository)
-                .add(Key.from("key", now.plus(Duration.ofSeconds(10))), StringValue.from("value"));
+                .add(Key.from("key"), StringValue.from("value", now.plus(Duration.ofSeconds(10))));
     }
 
     @Test
@@ -49,18 +52,30 @@ public class StringApplicationServiceTest {
 
         when(repository.stringFor(aKey())).thenReturn(value);
 
-        assertThat(service.get("key"), is(value));
+        assertThat(service.getValueOf("key"), is(value));
     }
 
     @Test
     public void incrementsKeyInRepository() {
         when(repository.stringFor(aKey())).thenReturn(aNumericStringValue());
 
-        assertThat(service.increment("key"), is(11L));
+        assertThat(service.incrementValueOf("key"), is(11L));
+    }
+
+    @Test
+    public void incrementsZeroValueAndAddsItToTheRepositoryForKeyNotFound() {
+        Key key = aKey();
+        when(repository.stringFor(key)).thenThrow(new KeyNotFoundException());
+
+        long result = service.incrementValueOf("key");
+
+        verify(repository).add(key, StringValue.from("1"));
+        assertThat(result, is(1L));
     }
 
     private final Clock clock = mock(Clock.class);
     private final KeyValueRepository repository = mock(KeyValueRepository.class);
+    private final Transaction transaction = new SimpleTransaction();
     private final StringApplicationService service =
-            new StringApplicationService(clock, repository);
+            new StringApplicationService(clock, repository, transaction);
 }

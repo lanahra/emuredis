@@ -1,6 +1,6 @@
-package com.github.lanahra.emuredis.application;
+package com.github.lanahra.emuredis.application.string;
 
-import com.github.lanahra.emuredis.domain.model.string.StringValue;
+import com.github.lanahra.emuredis.domain.model.Key;
 
 public class SetCommand {
 
@@ -14,12 +14,12 @@ public class SetCommand {
         this.expirationInSeconds = expirationInSeconds;
     }
 
-    public String key() {
-        return key;
+    public Key key() {
+        return Key.from(key);
     }
 
-    public StringValue value() {
-        return StringValue.from(value);
+    public String value() {
+        return value;
     }
 
     public boolean hasExpiration() {

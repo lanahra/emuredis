@@ -27,5 +27,6 @@ public class KeyApplicationServiceTest {
     }
 
     private final KeyValueRepository repository = mock(KeyValueRepository.class);
-    private final KeyApplicationService service = new KeyApplicationService(repository);
+    private final Transaction transaction = new SimpleTransaction();
+    private final KeyApplicationService service = new KeyApplicationService(repository, transaction);
 }

@@ -11,7 +11,7 @@ public class StringValueTest {
     @Test
     public void fulfillsEqualsAndHashCodeContract() {
         new EqualsTester()
-                .addEqualityGroup(StringValue.ZERO, StringValue.ZERO)
+                .addEqualityGroup(StringValue.zero(), StringValue.zero())
                 .addEqualityGroup(StringValue.from(""), StringValue.from(""))
                 .addEqualityGroup(StringValue.from("value"), StringValue.from("value"))
                 .addEqualityGroup(StringValue.from("VALUE"), StringValue.from("VALUE"))
@@ -20,7 +20,7 @@ public class StringValueTest {
 
     @Test
     public void incrementsStringValueAsIntegerByOne() {
-        StringValue value = StringValue.ZERO;
+        StringValue value = StringValue.zero();
 
         long firstIncrement = value.increment();
         long secondIncrement = value.increment();
