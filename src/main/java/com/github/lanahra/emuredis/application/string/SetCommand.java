@@ -8,6 +8,10 @@ public class SetCommand {
     private final String value;
     private final Long expirationInSeconds;
 
+    public SetCommand(String key, String value) {
+        this(key, value, null);
+    }
+
     public SetCommand(String key, String value, Long expirationInSeconds) {
         this.key = key;
         this.value = value;

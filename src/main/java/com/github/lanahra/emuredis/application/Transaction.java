@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 public interface Transaction {
 
-    <T> T execute(Runnable action);
+    void run(Runnable action);
 
-    <T> T execute(Supplier<T> action);
+    <T> T supply(Supplier<T> action);
 }

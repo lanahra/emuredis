@@ -47,6 +47,10 @@ public class StringValue extends Value {
         }
     }
 
+    public String value() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other != null

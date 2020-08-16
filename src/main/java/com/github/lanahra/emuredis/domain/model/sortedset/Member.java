@@ -18,6 +18,10 @@ public class Member implements Comparable<Member> {
         return new Member(value, 0.0);
     }
 
+    public String value() {
+        return value;
+    }
+
     @Override
     public int compareTo(Member other) {
         return Double.compare(score, other.score);

@@ -19,7 +19,7 @@ public class SortedSetApplicationService {
     }
 
     public int addMember(AddCommand command) {
-        return transaction.execute(
+        return transaction.supply(
                 () -> {
                     SortedSetValue value = sortedSetOf(command.key());
                     return value.add(command.member());
@@ -37,7 +37,7 @@ public class SortedSetApplicationService {
     }
 
     public int cardinalityOfSortedSetOf(String key) {
-        return transaction.execute(
+        return transaction.supply(
                 () -> {
                     try {
                         SortedSetValue value = repository.sortedSetFor(Key.from(key));
@@ -49,7 +49,7 @@ public class SortedSetApplicationService {
     }
 
     public int rankInSortedSet(String key, String value) {
-        return transaction.execute(
+        return transaction.supply(
                 () -> {
                     SortedSetValue sortedSetValue = repository.sortedSetFor(Key.from(key));
                     return sortedSetValue.rank(Member.from(value));
@@ -57,7 +57,7 @@ public class SortedSetApplicationService {
     }
 
     public List<Member> rangeFromSortedSet(RangeCommand command) {
-        return transaction.execute(
+        return transaction.supply(
                 () -> {
                     SortedSetValue sortedSetValue = repository.sortedSetFor(command.key());
                     return sortedSetValue.range(command.start(), command.stop());

@@ -4,14 +4,14 @@ import java.util.function.Supplier;
 
 public class SimpleTransaction implements Transaction {
 
+
     @Override
-    public <T> T execute(Runnable action) {
+    public void run(Runnable action) {
         action.run();
-        return null;
     }
 
     @Override
-    public <T> T execute(Supplier<T> action) {
+    public <T> T supply(Supplier<T> action) {
         return action.get();
     }
 }

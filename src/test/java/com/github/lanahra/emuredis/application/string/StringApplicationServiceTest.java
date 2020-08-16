@@ -65,7 +65,7 @@ public class StringApplicationServiceTest {
     @Test
     public void incrementsZeroValueAndAddsItToTheRepositoryForKeyNotFound() {
         Key key = aKey();
-        when(repository.stringFor(key)).thenThrow(new KeyNotFoundException());
+        when(repository.stringFor(key)).thenThrow(KeyNotFoundException.class);
 
         long result = service.incrementValueOf("key");
 

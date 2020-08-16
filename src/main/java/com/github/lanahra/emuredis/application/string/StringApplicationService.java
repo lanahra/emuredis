@@ -23,7 +23,7 @@ public class StringApplicationService {
     }
 
     public void setValue(SetCommand command) {
-        transaction.execute(
+        transaction.run(
                 () -> {
                     Key key = command.key();
                     StringValue value = valueFrom(command);
@@ -42,11 +42,11 @@ public class StringApplicationService {
     }
 
     public StringValue getValueOf(String key) {
-        return transaction.execute(() -> repository.stringFor(Key.from(key)));
+        return transaction.supply(() -> repository.stringFor(Key.from(key)));
     }
 
     public long incrementValueOf(String key) {
-        return transaction.execute(
+        return transaction.supply(
                 () -> {
                     StringValue value = stringOf(Key.from(key));
                     value.increment();

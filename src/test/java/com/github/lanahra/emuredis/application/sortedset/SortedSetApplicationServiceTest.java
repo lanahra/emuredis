@@ -26,7 +26,7 @@ public class SortedSetApplicationServiceTest {
     public void addsMemberToNewSortedSet() {
         AddCommand command = anAddCommand();
 
-        when(repository.sortedSetFor(command.key())).thenThrow(new KeyNotFoundException());
+        when(repository.sortedSetFor(command.key())).thenThrow(KeyNotFoundException.class);
 
         int added = service.addMember(command);
 
@@ -72,7 +72,7 @@ public class SortedSetApplicationServiceTest {
 
     @Test
     public void zeroCardinalityForNonExistentSortedSet() {
-        when(repository.sortedSetFor(aKey())).thenThrow(new KeyNotFoundException());
+        when(repository.sortedSetFor(aKey())).thenThrow(KeyNotFoundException.class);
 
         int cardinality = service.cardinalityOfSortedSetOf("key");
 

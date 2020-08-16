@@ -15,11 +15,11 @@ public class KeyApplicationService {
     }
 
     public int dbSize() {
-        return transaction.execute(repository::size);
+        return transaction.supply(repository::size);
     }
 
-    public int delete(String... keys) {
-        return transaction.execute(() -> repository.delete(keysFrom(keys)));
+    public int deleteKeys(String... keys) {
+        return transaction.supply(() -> repository.delete(keysFrom(keys)));
     }
 
     private Key[] keysFrom(String... keys) {

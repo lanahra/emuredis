@@ -23,7 +23,7 @@ public class KeyApplicationServiceTest {
         when(repository.delete(Key.from("first"), Key.from("second"), Key.from("third")))
                 .thenReturn(2);
 
-        assertThat(service.delete("first", "second", "third"), is(2));
+        assertThat(service.deleteKeys("first", "second", "third"), is(2));
     }
 
     private final KeyValueRepository repository = mock(KeyValueRepository.class);
