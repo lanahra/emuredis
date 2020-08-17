@@ -22,6 +22,7 @@ public class InputOutputComponent {
 
     @Bean
     public ReadEvalPrintLoop readEvalPrintLoop() {
+        inputOutputConfiguration().out().println("emuredis started, you can start typing commands");
         return new ReadEvalPrintLoop(inputOutputConfiguration(), commandParser);
     }
 }

@@ -72,9 +72,16 @@ foi depois reutilizado na implementação da API HTTP com comandos genéricos e 
 
 ### Executando
 
+#### Com Docker
+
 1. Rodar o comando `mvn clean package` na raiz do projeto.
 2. Rodar o script `build.sh` para criar a imagem docker.
 2. Rodar o script `run.sh`.
+
+#### Sem Docker
+
+1. Rodar o comando `mvn clean package` na raiz do projeto.
+2. Rodar o comando `java -jar target/emuredis-1.0.jar`.
 
 O servidor HTTP será iniciado em background na porta 8080. Na pasta `postman` tem duas collections
 que podem ser importadas no programa Postman com exemplos de cada requisição possível. O REPL é
