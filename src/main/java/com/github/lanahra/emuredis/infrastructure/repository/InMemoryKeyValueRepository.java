@@ -32,7 +32,7 @@ public class InMemoryKeyValueRepository implements KeyValueRepository {
         if (value instanceof StringValue) {
             return (StringValue) value;
         } else {
-            throw new ValueWrongTypeException();
+            throw new ValueWrongTypeException(key);
         }
     }
 
@@ -42,7 +42,7 @@ public class InMemoryKeyValueRepository implements KeyValueRepository {
         if (value instanceof SortedSetValue) {
             return (SortedSetValue) value;
         } else {
-            throw new ValueWrongTypeException();
+            throw new ValueWrongTypeException(key);
         }
     }
 
@@ -50,7 +50,7 @@ public class InMemoryKeyValueRepository implements KeyValueRepository {
         Value value = map.get(key);
         if (value == null || value.isExpired(clock)) {
             map.remove(key);
-            throw new KeyNotFoundException();
+            throw new KeyNotFoundException(key);
         }
         return value;
     }

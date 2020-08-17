@@ -12,6 +12,10 @@ public class Key {
         return new Key(name);
     }
 
+    public String name() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other != null && getClass().equals(other.getClass()) && equalsCasted((Key) other);

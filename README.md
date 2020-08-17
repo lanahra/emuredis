@@ -23,7 +23,7 @@ aplicação. No pacote `domain.model`, é possível encontrar os vários conceit
 como chave, valor, string e sorted set.
 
 Para estruturar a aplicação, eu usei uma arquitetura em camadas (Layered Architecture), em que as
-camadas mais internas da aplicação não têm acesso à camadas mais superiores. O programa é divido nas
+camadas mais internas da aplicação não têm acesso às camadas superiores. O programa é divido nas
 seguintes camadas:
 
 - Domain Model: implementa todas as regras de negócio.
@@ -73,6 +73,7 @@ foi depois reutilizado na implementação da API HTTP com comandos genéricos e 
 ### Executando
 
 1. Rodar o comando `mvn clean package` na raiz do projeto.
+2. Rodar o script `build.sh` para criar a imagem docker.
 2. Rodar o script `run.sh`.
 
 O servidor HTTP será iniciado em background na porta 8080. Na pasta `postman` tem duas collections

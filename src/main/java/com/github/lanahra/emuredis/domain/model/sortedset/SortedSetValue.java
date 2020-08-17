@@ -43,7 +43,7 @@ public class SortedSetValue extends Value {
         List<Member> members = new ArrayList<>(this.members);
         int rank = members.indexOf(member);
         if (rank == -1) {
-            throw new MemberNotFoundException();
+            throw new MemberNotFoundException(member);
         }
         return rank;
     }
