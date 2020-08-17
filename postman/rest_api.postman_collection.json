@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "478cffa0-a7ba-4c1e-ae31-6735f16879c5",
+		"name": "rest_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DBSIZE",
+			"request": {
+				"method": "OPTIONS",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/dbsize",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dbsize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL key",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/:key",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						":key"
+					],
+					"variable": [
+						{
+							"key": "key",
+							"value": "mykey"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SET key value",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "myvalue"
+				},
+				"url": {
+					"raw": "localhost:8080/:key",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						":key"
+					],
+					"variable": [
+						{
+							"key": "key",
+							"value": "mykey"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SET key value EX seconds",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "myvalue"
+				},
+				"url": {
+					"raw": "localhost:8080/:key?ex=10",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						":key"
+					],
+					"query": [
+						{
+							"key": "ex",
+							"value": "10"
+						}
+					],
+					"variable": [
+						{
+							"key": "key",
+							"value": "mykey"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/:key",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						":key"
+					],
+					"variable": [
+						{
+							"key": "key",
+							"value": "mykey"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INCR key",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/:key/incr",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						":key",
+						"incr"
+					],
+					"variable": [
+						{
+							"key": "key",
+							"value": "mykey"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ZADD key score member",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/:key/zadd/:member?score=1.0",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						":key",
+						"zadd",
+						":member"
+					],
+					"query": [
+						{
+							"key": "score",
+							"value": "1.0"
+						}
+					],
+					"variable": [
+						{
+							"key": "key",
+							"value": "mykey"
+						},
+						{
+							"key": "member",
+							"value": "mymember"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ZCARD key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/:key/zcard",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						":key",
+						"zcard"
+					],
+					"variable": [
+						{
+							"key": "key",
+							"value": "mykey"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ZRANK key member",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/:key/zrank/:member",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						":key",
+						"zrank",
+						":member"
+					],
+					"variable": [
+						{
+							"key": "key",
+							"value": "mykey"
+						},
+						{
+							"key": "member",
+							"value": "mymember"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ZRANGE key start stop",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/:key/zrange?start=0&stop=-1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						":key",
+						"zrange"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0"
+						},
+						{
+							"key": "stop",
+							"value": "-1"
+						}
+					],
+					"variable": [
+						{
+							"key": "key",
+							"value": "mykey"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7ccf8659-f7e8-49b9-a448-a6644c569d0b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "22ae4ac9-4eaf-4415-854f-aa580171f556",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

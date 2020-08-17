@@ -1,6 +1,7 @@
 package com.github.lanahra.emuredis;
 
 import com.github.lanahra.emuredis.infrastructure.cli.ReadEvalPrintLoop;
+import com.github.lanahra.emuredis.infrastructure.spring.ApiComponent;
 import com.github.lanahra.emuredis.infrastructure.spring.CommandLineComponent;
 import com.github.lanahra.emuredis.infrastructure.spring.CoreComponent;
 import com.github.lanahra.emuredis.infrastructure.spring.InputOutputComponent;
@@ -34,6 +35,7 @@ public class Launcher {
                 .withComponent(CoreComponent.class)
                 .withComponent(InputOutputComponent.class)
                 .withComponent(CommandLineComponent.class)
+                .withComponent(ApiComponent.class)
                 .launch();
     }
 }

@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "231151ea-8345-4d62-8dc8-557b51376547",
+		"name": "command_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DBSIZE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/?cmd=DBSIZE",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "cmd",
+							"value": "DBSIZE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL key [key ...]",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/?cmd=DEL%20mykey%20myotherkey",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "cmd",
+							"value": "DEL%20mykey%20myotherkey"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SET key value",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/?cmd=SET%20mykey%20myvalue",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "cmd",
+							"value": "SET%20mykey%20myvalue"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SET key value EX seconds",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/?cmd=SET%20mykey%20myvalue%20EX%2010",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "cmd",
+							"value": "SET%20mykey%20myvalue%20EX%2010"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/?cmd=GET%20mykey",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "cmd",
+							"value": "GET%20mykey"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INCR key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/?cmd=INCR%20mykey",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "cmd",
+							"value": "INCR%20mykey"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ZADD key score member",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/?cmd=ZADD%20mykey%201.0%20mymember",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "cmd",
+							"value": "ZADD%20mykey%201.0%20mymember"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ZCARD key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/?cmd=ZCARD%20mykey",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "cmd",
+							"value": "ZCARD%20mykey"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ZRANK key member",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/?cmd=ZRANK%20mykey%20mymember",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "cmd",
+							"value": "ZRANK%20mykey%20mymember"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ZRANGE key start stop",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/?cmd=ZRANGE%20mykey%200%20-1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "cmd",
+							"value": "ZRANGE%20mykey%200%20-1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b13ade3d-f4cc-43c7-9802-647266cdc4ef",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "93b8b9f7-adf0-4187-9ea8-c0713f233a5a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -3,17 +3,17 @@ package com.github.lanahra.emuredis.domain.model.sortedset;
 import com.github.lanahra.emuredis.domain.model.Value;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class SortedSetValue extends Value {
 
-    Set<Member> members;
+    SortedSet<Member> members;
 
     private SortedSetValue() {
         super();
-        this.members = new HashSet<>();
+        this.members = new TreeSet<>();
     }
 
     public static SortedSetValue empty() {
@@ -21,8 +21,8 @@ public class SortedSetValue extends Value {
     }
 
     public int add(Member member) {
-        if (members.contains(member)) {
-            members.remove(member);
+        if (contains(member)) {
+            members.removeIf(member::equals);
             members.add(member);
             return 0;
         } else {
@@ -31,12 +31,16 @@ public class SortedSetValue extends Value {
         }
     }
 
+    private boolean contains(Member member) {
+        return new ArrayList<>(this.members).contains(member);
+    }
+
     public int cardinality() {
         return members.size();
     }
 
     public int rank(Member member) {
-        List<Member> members = sorted();
+        List<Member> members = new ArrayList<>(this.members);
         int rank = members.indexOf(member);
         if (rank == -1) {
             throw new MemberNotFoundException();
@@ -44,14 +48,8 @@ public class SortedSetValue extends Value {
         return rank;
     }
 
-    private List<Member> sorted() {
-        List<Member> members = new ArrayList<>(this.members);
-        Collections.sort(members);
-        return members;
-    }
-
     public List<Member> range(int start, int stop) {
-        List<Member> members = sorted();
+        List<Member> members = new ArrayList<>(this.members);
         int size = members.size();
         int fromIndex = fromIndex(start, size);
         int toIndex = toIndex(stop, size);

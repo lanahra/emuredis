@@ -7,8 +7,10 @@ import com.github.lanahra.emuredis.application.string.StringApplicationService;
 import com.github.lanahra.emuredis.domain.model.Clock;
 import com.github.lanahra.emuredis.domain.model.KeyValueRepository;
 import com.github.lanahra.emuredis.infrastructure.repository.InMemoryKeyValueRepository;
+import com.github.lanahra.emuredis.infrastructure.transaction.ExecutorTransaction;
 import java.time.Instant;
-import java.util.function.Supplier;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -42,17 +44,11 @@ public class CoreComponent {
 
     @Bean
     public Transaction transaction() {
-        return new Transaction() {
+        return new ExecutorTransaction(executor());
+    }
 
-            @Override
-            public void run(Runnable action) {
-                action.run();
-            }
-
-            @Override
-            public <T> T supply(Supplier<T> action) {
-                return action.get();
-            }
-        };
+    @Bean
+    public Executor executor() {
+        return Executors.newSingleThreadExecutor();
     }
 }
